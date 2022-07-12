@@ -33,7 +33,7 @@ Installation of the .NET 6 SDK is required.  All other libraries should be resto
 
 Other libraries used:
 - NUnit 
-
+- Shouldly
 
 ## CLI usage
 
