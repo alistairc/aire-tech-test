@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AireLogic.LyricCount", "AireLogic.LyricCount\AireLogic.LyricCount.csproj", "{6E76B115-6002-4908-8151-4ABC2B4B2E30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AireLogic.LyricCount.Tests", "AireLogic.LyricCount.Tests\AireLogic.LyricCount.Tests.csproj", "{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E76B115-6002-4908-8151-4ABC2B4B2E30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E76B115-6002-4908-8151-4ABC2B4B2E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E76B115-6002-4908-8151-4ABC2B4B2E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E76B115-6002-4908-8151-4ABC2B4B2E30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
