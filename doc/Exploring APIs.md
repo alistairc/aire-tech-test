@@ -73,5 +73,38 @@ through the query API?  But I haven't managed
 
 This one has a 'try it' UI, like swagger
 
-Seems very slow, often times out.  In fact haven't got "production" site to work. Looking for alternatives
+Seems very slow, often times out.  In fact haven't got "production" site to work.
 
+Actually, it does work.  From the browser at least, the Try It page seems broken
+
+This does work from the browser:
+https://api.lyrics.ovh/v1/Clutch/The%20Regulator
+https://api.lyrics.ovh/v1/Clutch/(In%20the%20Wake%20of)%20The%20Swollen%20Goat
+
+Over 30s to get a response
+
+Doesn't feel like this is going to work.  We're going to have to make 100s of requests, and hitting it in parallel feels like it would just break it.
+Also downlaoding the lyrics to every song for an artist isn't a tiny amount of data.
+
+I suppose it could work, just would be slow
+
+
+
+## Alternative - lyrics.com
+
+Free up to 100 queries, might not be enough for us. Looks like it needs an API key
+
+https://www.lyrics.com/lyrics_api.php
+
+
+
+## Alternative - LyricFind 
+ https://www.lyricfind.com/
+
+Can't seem to see a public API
+
+
+## Alternative - MusixMatch API
+https://developer.musixmatch.com/
+
+Free up to 2k calls, but free only shows first 30% of lyrics
