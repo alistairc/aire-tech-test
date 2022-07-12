@@ -7,10 +7,11 @@ The technical test for Aire Logic interview - Interact with APIs
 
     This should be a CLI application that is usable from the command line.
 
+## Current State
+
+At the moment this is just a skeleton.  No functionality yet, just Hello World!
 
 ## Building
-
-Build instructions to go here, expect it to look like this:
 
 This project uses the `dotnet` CLI tooling.  To build:
 
@@ -20,15 +21,19 @@ This project uses the `dotnet` CLI tooling.  To build:
 
 ## Running Tests
 
-Test instructions to go here, expect it to look like this:
-
 ```bash
     dotnet test
 ```
 
 ## Dependencies
 
-Dependencies to go here.  I would expect everything to be nuget based, and restored automatically
+This project uses .NET 6.0.
+
+Installation of the .NET 6 SDK is required.  All other libraries should be restored by the build from nuget.org
+
+Other libraries used:
+- NUnit 
+
 
 ## CLI usage
 
