@@ -19,7 +19,7 @@ class ArgumentValidation
     [Test]
     public void WithOneArg_ShouldSucceed()
     {
-        var args = new[] { "Example Artist" };
+        var args = new[] { CliTestSystem.KnownArtistSearchString };
         var result = CliTestSystem.RunWithArgs(args);
         result.ExitCode.ShouldBe(ExitCode.Success);
     }
@@ -30,20 +30,6 @@ class ArgumentValidation
 
         result.StdOutText.ShouldBe(LyricCountProgram.InvalidUsage + Environment.NewLine);
         result.ExitCode.ShouldBe(ExitCode.InvalidArgs);
-    }
-
-    static class CliTestSystem
-    {
-        public record CliOutput(ExitCode ExitCode, string StdOutText);
-
-        public static CliOutput RunWithArgs(string[] args)
-        {
-            var stdOut = new StringWriter();
-            var program = new LyricCountProgram(stdOut);
-            var exitCode = program.Run(args);
-
-            return new CliOutput(exitCode, stdOut.ToString());
-        }
     }
 }
 

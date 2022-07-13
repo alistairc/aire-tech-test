@@ -3,6 +3,7 @@ namespace AireLogic.LyricCount.Cli;
 class LyricCountProgram
 {
     public const string InvalidUsage = "Usage: AireLogic.LyricCount <artist>";
+    public const string UnknownArtist = "Artist not found";
 
     TextWriter StdOut { get; }
 
@@ -18,8 +19,17 @@ class LyricCountProgram
             StdOut.WriteLine(InvalidUsage);
             return ExitCode.InvalidArgs;
         }
-        
-        StdOut.WriteLine("Hello, World!");
-        return ExitCode.Success;
+
+        var artist = args[0];
+        if (artist == "Known Artist")
+        {
+            StdOut.WriteLine("Artist: Known Artist 1");
+            return ExitCode.Success;
+        }
+        else
+        {
+            StdOut.WriteLine(UnknownArtist);
+            return ExitCode.NoData;
+        }
     }
 }

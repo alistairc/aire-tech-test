@@ -3,5 +3,6 @@ namespace AireLogic.LyricCount.Cli;
 enum ExitCode
 {
     Success,
-    InvalidArgs
+    InvalidArgs,
+    NoData
 }
