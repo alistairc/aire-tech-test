@@ -6,10 +6,12 @@ class LyricCountProgram
     public const string UnknownArtist = "Artist not found";
 
     TextWriter StdOut { get; }
+    ILyricCountHandler Handler { get; }
 
-    public LyricCountProgram(TextWriter stdOut)
+    public LyricCountProgram(TextWriter stdOut, ILyricCountHandler handler)
     {
         StdOut = stdOut;
+        Handler = handler;
     }
 
     public ExitCode Run(string[] args)
@@ -21,15 +23,15 @@ class LyricCountProgram
         }
 
         var artist = args[0];
-        if (artist == "Known Artist")
-        {
-            StdOut.WriteLine("Artist: Known Artist 1");
-            return ExitCode.Success;
-        }
-        else
+        var result = Handler.GetLyricCount(artist);
+
+        if (!result.ArtistFound)
         {
             StdOut.WriteLine(UnknownArtist);
             return ExitCode.NoData;
         }
+
+        StdOut.WriteLine($"Artist: {result.ArtistName}");
+        return ExitCode.Success;
     }
 }

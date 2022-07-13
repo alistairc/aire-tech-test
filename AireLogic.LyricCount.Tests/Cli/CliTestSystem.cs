@@ -12,7 +12,7 @@ static class CliTestSystem
     public static CliOutput RunWithArgs(params string[] args)
     {
         var stdOut = new StringWriter();
-        var program = new LyricCountProgram(stdOut);
+        var program = new LyricCountProgram(stdOut, new FakeLyricCountHandler());
         var exitCode = program.Run(args);
 
         return new CliOutput(exitCode, stdOut.ToString());
