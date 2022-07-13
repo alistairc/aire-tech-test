@@ -7,11 +7,14 @@ class RunningEndToEnd
     [Test]
     public void ShouldRunSuccessfully()
     {
+        const string validArgs = @"""Example Artist""";
+        
         var process = new Process
         {
             StartInfo = new ProcessStartInfo
             {
                 FileName = "AireLogic.LyricCount",
+                Arguments = validArgs,
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true
@@ -27,7 +30,7 @@ class RunningEndToEnd
             var errorOutput = process.StandardError.ReadToEnd();
 
             process.ExitCode.ShouldBe(0, errorOutput);
-            process.StandardOutput.ReadToEnd().ShouldBe("Hello, World!\n", errorOutput);
+            process.StandardOutput.ReadToEnd().ShouldBe("Hello, World!" + Environment.NewLine, errorOutput);
         }
         finally
         {

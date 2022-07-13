@@ -2,5 +2,6 @@ namespace AireLogic.LyricCount.Cli;
 
 enum ExitCode
 {
-    Success
+    Success,
+    InvalidArgs
 }
