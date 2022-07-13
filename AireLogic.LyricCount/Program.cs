@@ -1,3 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using AireLogic.LyricCount.Cli;
 
-Console.WriteLine("Hello, World!");
+var program = new LyricCountProgram(Console.Out);
+return (int)program.Run(args);
