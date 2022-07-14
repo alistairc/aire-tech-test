@@ -13,14 +13,25 @@ class QueryingForArtist
     [Test]
     public void ShouldReturnTheArtistResponse()
     {
+        //TODO: Look at a better way of doing these tests
+        //Not really a fan of this way of verifying the headers, would prefer to assert afterwards
+        //and really want a separate test per header
+        //Would like to just record the incoming messages - will look at a better solution later
+
         var fakeHttp = new MockHttpMessageHandler();
         fakeHttp
-            .When(HttpMethod.Get, "https://musicbrainz.api.root/artist?query=Example").WithHeaders("Accept", "application/json")
+            .When(HttpMethod.Get, "https://musicbrainz.api.root/artist?query=Example")
+            .WithHeaders("Accept", "application/json")
+            .WithHeaders("User-Agent",  "AppFromSettings/1.2.3")
+            .WithHeaders("User-Agent", "(EmailFromSettings)")  //User-Agent gets split like this by HTTP client
             .Respond(HttpStatusCode.OK, new StringContent(ArtistJsonResponse, Encoding.UTF8, "application/json"));
 
         var settings = new MusicBrainzSettings
         {
-            ApiUri = "https://musicbrainz.api.root"
+            ApiUri = "https://musicbrainz.api.root",
+            ApplicationName = "AppFromSettings",
+            ApplicationVersion ="1.2.3",
+            ContactEmail = "EmailFromSettings"
         };
         var client = new MusicBrainzClient(settings, fakeHttp.ToHttpClient());
         var result = client.QueryArtist("Example");
