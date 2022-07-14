@@ -1,4 +1,4 @@
-namespace AireLogic.LyricCount.Cli;
+namespace AireLogic.LyricCount.Tests.Cli;
 
 using AireLogic.LyricCount.Core;
 

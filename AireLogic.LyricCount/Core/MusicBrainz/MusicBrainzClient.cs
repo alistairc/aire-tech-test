@@ -1,9 +1,6 @@
-
-using System.Net.Http;
-using System.Net.Mime;
 namespace AireLogic.LyricCount.Core.MusicBrainz;
 
-using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Net.Http.Json;
 
 class MusicBrainzClient : IMusicBrainzClient
@@ -20,11 +17,10 @@ class MusicBrainzClient : IMusicBrainzClient
     public ArtistResponse QueryArtist(string artistSearch)
     {
         var requestUri = Settings.ApiUri + $"/artist?query={artistSearch}";
-        var message = new HttpRequestMessage(HttpMethod.Get, requestUri) {
-            Headers = {
-                Accept = {  new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json)}
-            }
-        };
+
+        var message = new HttpRequestMessage(HttpMethod.Get, requestUri);
+        message.Headers.TryAddWithoutValidation("Accept", "application/json");
+        message.Headers.TryAddWithoutValidation("User-Agent", "AireLogic.LyricCount/1.0 (alistairc-lyric-count@altmails.com)");
 
         // all these  .GetAwaiter().GetResult(); are horrible, but it's temporary!
         //  Need to convert this whole app to async

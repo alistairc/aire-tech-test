@@ -7,7 +7,7 @@ class RunningEndToEnd
     [Test]
     public void ShouldRunSuccessfully()
     {
-        const string validArgs = @"""Known Artist""";
+        const string validArgs = @"""Metallica""";
         
         var process = new Process
         {
@@ -30,7 +30,7 @@ class RunningEndToEnd
             var standardOutput = process.StandardOutput.ReadToEnd();
             var errorOutput = process.StandardError.ReadToEnd();
 
-            process.ExitCode.ShouldBe(0, errorOutput);
+            process.ExitCode.ShouldBe(0, standardOutput + errorOutput);
             standardOutput.ShouldStartWith("Artist:", Case.Insensitive, errorOutput);
         }
         finally
