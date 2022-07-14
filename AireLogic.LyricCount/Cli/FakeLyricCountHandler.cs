@@ -1,5 +1,7 @@
 namespace AireLogic.LyricCount.Cli;
 
+using AireLogic.LyricCount.Core;
+
 class FakeLyricCountHandler : ILyricCountHandler
 {
     public LyricCountResult GetLyricCount(string artistSearch)

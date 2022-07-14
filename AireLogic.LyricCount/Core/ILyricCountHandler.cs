@@ -1,4 +1,4 @@
-namespace AireLogic.LyricCount.Cli;
+namespace AireLogic.LyricCount.Core;
 
 interface ILyricCountHandler
 {

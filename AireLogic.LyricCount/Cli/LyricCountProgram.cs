@@ -1,5 +1,7 @@
 namespace AireLogic.LyricCount.Cli;
 
+using AireLogic.LyricCount.Core;
+
 class LyricCountProgram
 {
     public const string InvalidUsage = "Usage: AireLogic.LyricCount <artist>";
