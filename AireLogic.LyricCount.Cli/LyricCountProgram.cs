@@ -1,7 +1,7 @@
 namespace AireLogic.LyricCount.Cli;
 
 using System.Threading.Tasks;
-using AireLogic.LyricCount.Core;
+using AireLogic.LyricCount;
 
 class LyricCountProgram
 {

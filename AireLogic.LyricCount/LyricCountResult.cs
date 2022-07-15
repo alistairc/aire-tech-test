@@ -1,4 +1,4 @@
-namespace AireLogic.LyricCount.Core;
+namespace AireLogic.LyricCount;
 
 public record LyricCountResult(bool ArtistFound, string? ArtistName)
 {

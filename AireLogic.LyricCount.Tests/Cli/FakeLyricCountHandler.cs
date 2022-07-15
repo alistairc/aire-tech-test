@@ -1,6 +1,6 @@
 namespace AireLogic.LyricCount.Tests.Cli;
 
-using AireLogic.LyricCount.Core;
+using AireLogic.LyricCount;
 
 class FakeLyricCountHandler : ILyricCountHandler
 {

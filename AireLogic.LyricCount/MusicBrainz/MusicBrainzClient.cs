@@ -1,4 +1,4 @@
-namespace AireLogic.LyricCount.Core.MusicBrainz;
+namespace AireLogic.LyricCount.MusicBrainz;
 
 using System.Net.Http;
 using System.Net.Http.Json;
