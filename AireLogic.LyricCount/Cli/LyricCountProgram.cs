@@ -1,5 +1,8 @@
 namespace AireLogic.LyricCount.Cli;
 
+using System.Threading.Tasks;
+using AireLogic.LyricCount.Core;
+
 class LyricCountProgram
 {
     public const string InvalidUsage = "Usage: AireLogic.LyricCount <artist>";
@@ -14,7 +17,7 @@ class LyricCountProgram
         Handler = handler;
     }
 
-    public ExitCode Run(string[] args)
+    public async Task<ExitCode> RunAsync(string[] args)
     {
         if (args.Length != 1)
         {
@@ -23,7 +26,7 @@ class LyricCountProgram
         }
 
         var artist = args[0];
-        var result = Handler.GetLyricCount(artist);
+        var result = await Handler.GetLyricCountAsync(artist);
 
         if (!result.ArtistFound)
         {

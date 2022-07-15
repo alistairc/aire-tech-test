@@ -5,16 +5,16 @@ namespace AireLogic.LyricCount.Tests.Cli;
 class UnknownArtist
 {
     [Test]
-    public void ShouldDisplayUnknownArtistMessage()
+    public async Task ShouldDisplayUnknownArtistMessageAsync()
     {
-        var result = CliTestSystem.RunWithUnknownArtist();
+        var result = await CliTestSystem.RunWithUnknownArtistAsync();
         result.StdOutText.ShouldStartWith(LyricCountProgram.UnknownArtist);
     }
 
     [Test]
-    public void ShouldSetNoDataExitCode()
+    public async Task ShouldSetNoDataExitCodeAsync()
     {
-        var result = CliTestSystem.RunWithUnknownArtist();
+        var result = await CliTestSystem.RunWithUnknownArtistAsync();
         result.ExitCode.ShouldBe(ExitCode.NoData);
     }
 }
