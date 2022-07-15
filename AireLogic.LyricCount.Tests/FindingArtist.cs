@@ -1,7 +1,6 @@
-namespace AireLogic.LyricCount.Tests;
-
-using AireLogic.LyricCount;
 using AireLogic.LyricCount.MusicBrainz;
+
+namespace AireLogic.LyricCount.Tests;
 
 class FindingArtist
 {

@@ -1,7 +1,6 @@
-namespace AireLogic.LyricCount.Tests.Cli;
-
-using System.Threading.Tasks;
 using AireLogic.LyricCount.Cli;
+
+namespace AireLogic.LyricCount.Tests.Cli;
 
 class ArgumentValidation
 {

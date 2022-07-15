@@ -1,8 +1,6 @@
-namespace AireLogic.LyricCount.MusicBrainz;
-
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
+
+namespace AireLogic.LyricCount.MusicBrainz;
 
 class MusicBrainzClient : IMusicBrainzClient
 {

@@ -1,5 +1,5 @@
-﻿using AireLogic.LyricCount.Cli;
-using AireLogic.LyricCount;
+﻿using AireLogic.LyricCount;
+using AireLogic.LyricCount.Cli;
 
 var httpClient = new HttpClient();
 

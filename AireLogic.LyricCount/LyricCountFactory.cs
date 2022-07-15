@@ -1,6 +1,6 @@
-namespace AireLogic.LyricCount;
-
 using AireLogic.LyricCount.MusicBrainz;
+
+namespace AireLogic.LyricCount;
 
 //Keeps the public interface small by allowing implmentations details to stay internal
 public static class LyricCountFactory
