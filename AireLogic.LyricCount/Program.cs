@@ -13,4 +13,4 @@ var program = new LyricCountProgram(
     mainHandler
 );
 
-return (int)program.Run(args);
+return (int) await program.RunAsync(args);

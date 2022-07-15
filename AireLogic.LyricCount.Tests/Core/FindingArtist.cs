@@ -6,18 +6,18 @@ using AireLogic.LyricCount.Core.MusicBrainz;
 class FindingArtist
 {
     [Test]
-    public void NotFound_ShouldReturnNotFoundResult()
+    public async Task NotFound_ShouldReturnNotFoundResultAsync()
     {
         var handler = new LyricCountHandler(new FakeMusicBrainzClient());
 
-        var response = handler.GetLyricCount("Unknown Artist");
+        var response = await handler.GetLyricCountAsync("Unknown Artist");
 
         response.ArtistFound.ShouldBeFalse();
         response.ArtistName.ShouldBeNull();
     }
 
     [Test]
-    public void Found_ShouldUseFirstArtist()
+    public async Task Found_ShouldUseFirstArtistAsync()
     {
         var mbResponse = new ArtistResponse
         {
@@ -36,7 +36,7 @@ class FindingArtist
         };
 
         var handler = new LyricCountHandler(musicBrainzClient);
-        var response = handler.GetLyricCount("Search Artist");
+        var response = await handler.GetLyricCountAsync("Search Artist");
 
         response.ArtistFound.ShouldBeTrue();
         response.ArtistName.ShouldBe("Found Artist 1");
@@ -48,9 +48,9 @@ class FindingArtist
 
         public IReadOnlyDictionary<string, ArtistResponse> Responses { private get; init; } = new Dictionary<string, ArtistResponse>();
 
-        public ArtistResponse QueryArtist(string artistSearch)
+        public Task<ArtistResponse> QueryArtistAsync(string artistSearch)
         {
-            return Responses.GetValueOrDefault(artistSearch, NotFoundResponse);
+            return Task.FromResult(Responses.GetValueOrDefault(artistSearch, NotFoundResponse));
         }
     }
 }

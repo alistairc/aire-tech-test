@@ -2,6 +2,7 @@ namespace AireLogic.LyricCount.Core.MusicBrainz;
 
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 class MusicBrainzClient : IMusicBrainzClient
 {
@@ -14,7 +15,7 @@ class MusicBrainzClient : IMusicBrainzClient
         HttpClient = httpClient;
     }
 
-    public ArtistResponse QueryArtist(string artistSearch)
+    public async Task<ArtistResponse> QueryArtistAsync(string artistSearch)
     {
         var requestUri = Settings.ApiUri + $"/artist?query={artistSearch}";
         var userAgent = $"{Settings.ApplicationName}/{Settings.ApplicationVersion} ({Settings.ContactEmail})";
@@ -23,14 +24,10 @@ class MusicBrainzClient : IMusicBrainzClient
         message.Headers.Add("Accept", "application/json");
         message.Headers.Add("User-Agent", userAgent);
 
-        // all these  .GetAwaiter().GetResult(); are horrible, but it's temporary!
-        //  Need to convert this whole app to async
-        var responseMessage = HttpClient.SendAsync(message)
-            .GetAwaiter().GetResult();
+        var responseMessage = await HttpClient.SendAsync(message);
         responseMessage.EnsureSuccessStatusCode();
 
-        var response = responseMessage.Content.ReadFromJsonAsync<ArtistResponse>()
-             .GetAwaiter().GetResult();
+        var response = await responseMessage.Content.ReadFromJsonAsync<ArtistResponse>();
 
         return response!;
     }

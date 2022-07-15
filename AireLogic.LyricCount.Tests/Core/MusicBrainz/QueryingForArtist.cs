@@ -2,6 +2,7 @@ namespace AireLogic.LyricCount.Tests.Core.MusicBrainz;
 
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using AireLogic.LyricCount.Core.MusicBrainz;
 using RichardSzalay.MockHttp;
 
@@ -11,7 +12,7 @@ class QueryingForArtist
     const string ArtistJsonResponse = @"{""artists"":[{""id"":""11111111-1111-1111-1111-111111111111"",""name"":""First Match""},{""id"": ""22222222-2222-2222-2222-222222222222"",""name"": ""Second Match""}]}";
 
     [Test]
-    public void ShouldReturnTheArtistResponse()
+    public async Task ShouldReturnTheArtistResponseAsync()
     {
         //TODO: Look at a better way of doing these tests
         //Not really a fan of this way of verifying the headers, would prefer to assert afterwards
@@ -34,7 +35,7 @@ class QueryingForArtist
             ContactEmail = "EmailFromSettings"
         };
         var client = new MusicBrainzClient(settings, fakeHttp.ToHttpClient());
-        var result = client.QueryArtist("Example");
+        var result = await client.QueryArtistAsync("Example");
 
         result.ShouldNotBeNull();
         result.Artists.Count.ShouldBe(2);

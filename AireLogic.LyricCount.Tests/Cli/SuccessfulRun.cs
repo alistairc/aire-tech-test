@@ -3,9 +3,9 @@ namespace AireLogic.LyricCount.Tests.Cli;
 class SuccessfulRun
 {
     [Test]
-    public void ShouldDisplayTheArtistName()
+    public async Task ShouldDisplayTheArtistNameAsync()
     {
-        var result = CliTestSystem.RunWithKnownArtist();
+        var result = await CliTestSystem.RunWithKnownArtistAsync();
         result.StdOutText.ShouldStartWith($"Artist: {CliTestSystem.KnownArtist}");
     }
 }

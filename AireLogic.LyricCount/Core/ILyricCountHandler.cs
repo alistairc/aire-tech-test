@@ -2,5 +2,5 @@ namespace AireLogic.LyricCount.Core;
 
 interface ILyricCountHandler
 {
-    LyricCountResult GetLyricCount(string artistSearch);
+    Task<LyricCountResult> GetLyricCountAsync(string artistSearch);
 }
