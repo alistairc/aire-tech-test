@@ -23,7 +23,7 @@ This project uses the `dotnet` CLI tooling.  To build and run the tests:
 
 You can run the app locally with this
 ```
-    dotnet run --project AireLogic.LyricCount "Metallica"
+    dotnet run --project AireLogic.LyricCount.Cli "Metallica"
 ```
 See below for more details of CLI usage
 
@@ -51,7 +51,7 @@ Tests:
 
 ## CLI usage
 
-Usage: `AireLogic.LyricCount <artist search text>`
+Usage: `AireLogic.LyricCount.Cli <artist search text>`
 
 Exit Codes
 - 0 = Success
@@ -61,18 +61,18 @@ Exit Codes
 Examples:
 
 ```
-    $ AireLogic.LyricCount "Clutch"
+    $ AireLogic.LyricCount.Cli "Clutch"
     Artist: Clutch
     $ echo $?
     0
 
-    $ AireLogic.LyricCount "hgdfskjhgdsf"
+    $ AireLogic.LyricCount.Cli "hgdfskjhgdsf"
     Artist not found
     $ echo $?
     2
 
-    $ AireLogic.LyricCount too many args
-    Usage: AireLogic.LyricCount <artist>
+    $ AireLogic.LyricCount.CLi too many args
+    Usage: AireLogic.LyricCount.Cli <artist>
     $ echo $?
     1
 ```
