@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AireLogic.LyricCount", "Air
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AireLogic.LyricCount.Tests", "AireLogic.LyricCount.Tests\AireLogic.LyricCount.Tests.csproj", "{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AireLogic.LyricCount.Cli", "AireLogic.LyricCount.Cli\AireLogic.LyricCount.Cli.csproj", "{9E08796A-AE71-4B74-B983-632FF4CD6F74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84CBEA0F-B0D8-4442-94D3-13E9BE4B6560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E08796A-AE71-4B74-B983-632FF4CD6F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E08796A-AE71-4B74-B983-632FF4CD6F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E08796A-AE71-4B74-B983-632FF4CD6F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E08796A-AE71-4B74-B983-632FF4CD6F74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

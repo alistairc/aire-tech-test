@@ -1,10 +1,9 @@
-namespace AireLogic.LyricCount.Tests.Core.MusicBrainz;
-
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using AireLogic.LyricCount.Core.MusicBrainz;
+using AireLogic.LyricCount.MusicBrainz;
 using RichardSzalay.MockHttp;
+
+namespace AireLogic.LyricCount.Tests.MusicBrainz;
 
 class QueryingForArtist
 {

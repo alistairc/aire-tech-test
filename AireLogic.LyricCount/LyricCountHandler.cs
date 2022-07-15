@@ -1,7 +1,6 @@
-namespace AireLogic.LyricCount.Core;
+using AireLogic.LyricCount.MusicBrainz;
 
-using System.Threading.Tasks;
-using AireLogic.LyricCount.Core.MusicBrainz;
+namespace AireLogic.LyricCount;
 
 class LyricCountHandler : ILyricCountHandler
 {

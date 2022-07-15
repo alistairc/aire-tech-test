@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AireLogic.LyricCount\AireLogic.LyricCount.csproj" />
+    <ProjectReference Include="..\AireLogic.LyricCount.Cli\AireLogic.LyricCount.Cli.csproj" />
   </ItemGroup>
 
 </Project>
