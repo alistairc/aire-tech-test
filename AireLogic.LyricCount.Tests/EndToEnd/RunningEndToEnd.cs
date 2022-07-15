@@ -13,7 +13,7 @@ class RunningEndToEnd
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = "AireLogic.LyricCount",
+                FileName = "AireLogic.LyricCount.Cli",
                 Arguments = validArgs,
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,

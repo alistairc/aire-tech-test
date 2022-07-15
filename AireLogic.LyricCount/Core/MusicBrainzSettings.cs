@@ -1,6 +1,6 @@
-namespace AireLogic.LyricCount.Core.MusicBrainz;
+namespace AireLogic.LyricCount.Core;
 
-class MusicBrainzSettings
+public class MusicBrainzSettings
 {
     public string ApiUri { get; set; } = "https://musicbrainz.org/ws/2";
     public string ApplicationName { get; set;} = "AireLogic.LyricCount";

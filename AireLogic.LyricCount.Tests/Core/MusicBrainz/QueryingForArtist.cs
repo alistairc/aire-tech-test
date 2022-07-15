@@ -3,6 +3,7 @@ namespace AireLogic.LyricCount.Tests.Core.MusicBrainz;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AireLogic.LyricCount.Core;
 using AireLogic.LyricCount.Core.MusicBrainz;
 using RichardSzalay.MockHttp;
 

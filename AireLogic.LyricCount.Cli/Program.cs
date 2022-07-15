@@ -1,12 +1,9 @@
 ﻿using AireLogic.LyricCount.Cli;
 using AireLogic.LyricCount.Core;
-using AireLogic.LyricCount.Core.MusicBrainz;
 
 var httpClient = new HttpClient();
 
-var mainHandler = new LyricCountHandler(new 
-    MusicBrainzClient(new MusicBrainzSettings(), httpClient)
-);
+var mainHandler = LyricCountFactory.CreateHandler(new MusicBrainzSettings(), httpClient);
 
 var program = new LyricCountProgram(
     Console.Out,
