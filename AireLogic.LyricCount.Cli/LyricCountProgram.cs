@@ -2,7 +2,7 @@ namespace AireLogic.LyricCount.Cli;
 
 class LyricCountProgram
 {
-    public const string InvalidUsage = "Usage: AireLogic.LyricCount <artist>";
+    public const string InvalidUsage = "Usage: AireLogic.LyricCount.Cli <artist>";
     public const string UnknownArtist = "Artist not found";
 
     TextWriter StdOut { get; }
