@@ -47,7 +47,6 @@ Main App:
 Tests:
 - NUnit 
 - Shouldly
-- RichardSzalay.MockHttp
 
 ## CLI usage
 
