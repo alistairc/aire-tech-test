@@ -5,19 +5,19 @@ namespace AireLogic.LyricCount.Tests.Cli;
 class ArgumentValidation
 {
     [Test]
-    public async Task WithNoArgs_ShouldPrintUsageMessageAsync()
+    public async Task WithNoArgs_ShouldPrintUsageMessage()
     {
         await ShouldBeInvalidAsync(Array.Empty<string>());
     }
 
     [Test]
-    public async Task WithTwoArgs_ShouldPrintUsageMessageAsync()
+    public async Task WithTwoArgs_ShouldPrintUsageMessage()
     {
         await ShouldBeInvalidAsync(new[] { "arg1", "arg2" });
     }
 
     [Test]
-    public async Task WithOneArg_ShouldSucceedAsync()
+    public async Task WithOneArg_ShouldSucceed()
     {
         var args = new[] { CliTestSystem.KnownArtistSearchString };
         var result = await CliTestSystem.RunWithArgsAsync(args);
