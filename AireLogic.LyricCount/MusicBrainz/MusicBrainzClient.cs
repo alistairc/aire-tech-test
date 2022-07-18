@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Web;
 
 namespace AireLogic.LyricCount.MusicBrainz;
 
@@ -15,7 +16,7 @@ class MusicBrainzClient : IMusicBrainzClient
 
     public async Task<ArtistResponse> QueryArtistAsync(string artistSearch)
     {
-        var requestUri = Settings.ApiUri + $"/artist?query={artistSearch}";
+        var requestUri = Settings.ApiUri + $"/artist?query={HttpUtility.UrlEncode(artistSearch)}";
         var userAgent = $"{Settings.ApplicationName}/{Settings.ApplicationVersion} ({Settings.ContactEmail})";
 
         var message = new HttpRequestMessage(HttpMethod.Get, requestUri);

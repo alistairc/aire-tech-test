@@ -13,11 +13,11 @@ class MusicBrainzTestSystem
 
     public const int ArtistsCount = 2;
     public const string SecondArtist = "Second Match";
-
+    private const string DefaultSearchArtist = "Example";
 
     FakeHttpMessageHandler FakeHttp { get; } = new();
 
-    public Task<ArtistResponse> GetArtist()
+    public Task<ArtistResponse> GetArtist(string artistSearch = DefaultSearchArtist)
     {
         var settings = new MusicBrainzSettings
         {
@@ -27,7 +27,14 @@ class MusicBrainzTestSystem
             ContactEmail = "EmailFromSettings"
         };
         var client = new MusicBrainzClient(settings, FakeHttp.ToHttpClient());
-        return client.QueryArtistAsync("Example");
+        return client.QueryArtistAsync(artistSearch);
+    }
+
+    public Uri GetLastRequestUri()
+    {
+        var messages = FakeHttp.ReceivedMessages.ToArray();
+        messages.ShouldNotBeEmpty();
+        return messages.Last().RequestUri!;
     }
 
     public HttpHeadersNonValidated LastRequestHeaders()

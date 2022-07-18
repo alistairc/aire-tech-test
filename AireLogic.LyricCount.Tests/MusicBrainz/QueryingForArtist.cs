@@ -23,9 +23,16 @@ class QueryingForArtist
         headers["Accept"].ShouldHaveSingleItem().ShouldBe("application/json");
 
         //User-Agent gets split like this by HTTP client
-        headers["User-Agent"].ShouldBe(new [] {"AppFromSettings/1.2.3","(EmailFromSettings)"});
+        headers["User-Agent"].ShouldBe(new[] { "AppFromSettings/1.2.3", "(EmailFromSettings)" });
     }
 
-    //TODO: Should escape Queries
+    [Test]
+    public async Task ShouldUrlEscapeTheArtistName()
+    {
+        var sut = new MusicBrainzTestSystem();
+        _ = await sut.GetArtist("Artist With Spaces");
+        var uri = sut.GetLastRequestUri();
+        uri.Query.ShouldContain("query=Artist+With+Spaces");
+    }
 }
 
