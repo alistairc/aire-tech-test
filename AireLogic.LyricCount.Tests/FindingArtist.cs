@@ -5,7 +5,7 @@ namespace AireLogic.LyricCount.Tests;
 class FindingArtist
 {
     [Test]
-    public async Task NotFound_ShouldReturnNotFoundResultAsync()
+    public async Task NotFound_ShouldReturnNotFoundResult()
     {
         var handler = new LyricCountHandler(new FakeMusicBrainzClient());
 
@@ -16,7 +16,7 @@ class FindingArtist
     }
 
     [Test]
-    public async Task Found_ShouldUseFirstArtistAsync()
+    public async Task Found_ShouldUseFirstArtist()
     {
         var mbResponse = new ArtistResponse
         {

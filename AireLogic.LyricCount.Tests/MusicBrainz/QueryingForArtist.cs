@@ -11,7 +11,7 @@ class QueryingForArtist
     const string ArtistJsonResponse = @"{""artists"":[{""id"":""11111111-1111-1111-1111-111111111111"",""name"":""First Match""},{""id"": ""22222222-2222-2222-2222-222222222222"",""name"": ""Second Match""}]}";
 
     [Test]
-    public async Task ShouldReturnTheArtistResponseAsync()
+    public async Task ShouldReturnTheArtistResponse()
     {
         //TODO: Look at a better way of doing these tests
         //Not really a fan of this way of verifying the headers, would prefer to assert afterwards
