@@ -32,6 +32,10 @@ class LyricCountProgram
         }
 
         StdOut.WriteLine($"Artist: {result.ArtistName}");
+        foreach (var song in result.Songs)
+        {
+            StdOut.WriteLine($"Song: {song.Name}");
+        }
         return ExitCode.Success;
     }
 }

@@ -15,6 +15,6 @@ class LyricCountHandler : ILyricCountHandler
     {
         var response = await Client.QueryArtistAsync(artistSearch);
         if (response.Artists.Count == 0) { return LyricCountResult.ArtistNotFound; }
-        return LyricCountResult.ForArtistFound(response.Artists.First().Name);
+        return LyricCountResult.ForArtistFound(response.Artists.First().Name, Array.Empty<Song>());
     }
 }
