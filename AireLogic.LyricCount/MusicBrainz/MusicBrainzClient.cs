@@ -31,4 +31,9 @@ class MusicBrainzClient : IMusicBrainzClient
 
         return response!;
     }
+
+    public Task<SongsResponse> QuerySongsAsync(string artistId)
+    {
+        return Task.FromResult(new SongsResponse());
+    }
 }
