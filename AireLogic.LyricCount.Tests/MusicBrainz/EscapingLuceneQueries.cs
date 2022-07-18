@@ -1,3 +1,5 @@
+using AireLogic.LyricCount.MusicBrainz;
+
 namespace AireLogic.LyricCount.Tests.MusicBrainz;
 
 class EscapingLuceneQueries

@@ -1,5 +1,6 @@
 using System.Text;
-namespace AireLogic.LyricCount.Tests.MusicBrainz;
+
+namespace AireLogic.LyricCount.MusicBrainz;
 
 static class LuceneEscape
 {

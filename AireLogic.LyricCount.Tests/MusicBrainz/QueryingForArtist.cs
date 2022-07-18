@@ -34,5 +34,16 @@ class QueryingForArtist
         var uri = sut.GetLastRequestUri();
         uri.Query.ShouldContain("query=Artist+With+Spaces");
     }
+
+    [Test]
+    public async Task ShouldEscapeLuceneSpecialCharBeforeUrlEscapingArtist()
+    {
+        var sut = new MusicBrainzTestSystem();
+        _ = await sut.GetArtist("AC/DC");
+        var uri = sut.GetLastRequestUri();
+        uri.Query.ShouldContain("query=AC%5C%2FDC");
+        //                                  ^ %2F = /, URL encoded
+        //                               ^ %5C = \, to escape the forward slash (for lucene)
+    }
 }
 
