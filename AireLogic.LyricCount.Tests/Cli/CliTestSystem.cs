@@ -21,13 +21,36 @@ static class CliTestSystem
         return new CliOutput(exitCode, stdOut.ToString());
     }
 
-    public static  Task<CliOutput> RunWithUnknownArtistAsync()
+    public static Task<CliOutput> RunWithUnknownArtistAsync()
     {
         return RunWithArgsAsync("Unknown Artist");
     }
 
-    public static  Task<CliOutput> RunWithKnownArtistAsync()
+    public static Task<CliOutput> RunWithKnownArtistAsync()
     {
         return RunWithArgsAsync(KnownArtistSearchString);
+    }
+
+    class FakeLyricCountHandler : ILyricCountHandler
+    {
+        public Task<LyricCountResult> GetLyricCountAsync(string artistSearch)
+        {
+            return Task.FromResult(GetLyricCount(artistSearch));
+        }
+
+        static LyricCountResult GetLyricCount(string artistSearch)
+        {
+            if (artistSearch.StartsWith(KnownArtistSearchString))
+            {
+                return LyricCountResult.ForArtistFound(
+                    KnownArtist,
+                    new[] {
+                        new Song(ExampleSong1),
+                        new Song(ExampleSong2)
+                    }
+                );
+            }
+            return LyricCountResult.ArtistNotFound;
+        }
     }
 }
