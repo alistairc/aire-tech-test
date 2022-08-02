@@ -48,14 +48,13 @@ class FindingArtist
             }
         );
 
-        static readonly SongsResponse Artist1SongsResponse = new()
-        {
-            Works = new[] {
+        static readonly SongsResponse Artist1SongsResponse = new(
+            Works: new[] {
                 new Work("Song 1"),
                 new Work("Song 2"),
                 new Work("Song 3")
            }
-        };
+        );
 
         static readonly ArtistResponse NotFoundResponse = new(Array.Empty<Artist>());
 
