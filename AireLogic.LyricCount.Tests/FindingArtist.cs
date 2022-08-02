@@ -40,14 +40,13 @@ class FindingArtist
 
     class FakeMusicBrainzClient : IMusicBrainzClient
     {
-        static readonly ArtistResponse ArtistResponse = new()
-        {
-            Artists = new[] {
+        static readonly ArtistResponse ArtistResponse = new(
+            Artists: new[] {
                 new Artist(ID:"11111111-1111-1111-1111-111111111111", Name:"Found Artist 1" ),
                 new Artist(ID:"22222222-2222-2222-2222-222222222222", Name:"Found Artist 2" ),
                 new Artist(ID:"33333333-3333-3333-3333-333333333333", Name:"Found Artist 3" )
             }
-        };
+        );
 
         static readonly SongsResponse Artist1SongsResponse = new()
         {
@@ -58,7 +57,7 @@ class FindingArtist
            }
         };
 
-        static readonly ArtistResponse NotFoundResponse = new();
+        static readonly ArtistResponse NotFoundResponse = new(Array.Empty<Artist>());
 
         IReadOnlyDictionary<string, ArtistResponse> ArtistResponses { get; } = new Dictionary<string, ArtistResponse> {
                 { "Search Artist", ArtistResponse}
