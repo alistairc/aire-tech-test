@@ -6,8 +6,15 @@ using AireLogic.LyricCount.MusicBrainz;
 
 namespace AireLogic.LyricCount.Tests.MusicBrainz;
 
-class MusicBrainzTestSystem
+static class MusicBrainzTestSystem
 {
+    public record HttpRequest(HttpHeadersNonValidated HttpHeaders, Uri Uri);
+
+    public record ApiCallResult<TData>(TData Value, IReadOnlyCollection<HttpRequest> Requests)
+    {
+        public HttpRequest LastRequest => Requests.Last();
+    }
+
     //This is a cut-down example of a response, with only the fields we currently use
     public const string ArtistJsonResponse = @"{""artists"":[{""id"":""11111111-1111-1111-1111-111111111111"",""name"":""First Match""},{""id"": ""22222222-2222-2222-2222-222222222222"",""name"": ""Second Match""}]}";
     public const string SongsJsonResponse = @"{""works"":[{""title"":""First Song""},{""title"": ""Second Song""}]}";
@@ -20,10 +27,7 @@ class MusicBrainzTestSystem
     public const string SecondSong = "Second Song";
     public const string DefaultArtistID = "11111111-1111-1111-1111-111111111111";
 
-
-    FakeHttpMessageHandler FakeHttp { get; } = new();
-
-    MusicBrainzSettings Settings { get; } = new MusicBrainzSettings
+    static MusicBrainzSettings Settings { get; } = new MusicBrainzSettings
     {
         ApiUri = "https://musicbrainz.api.root",
         ApplicationName = "AppFromSettings",
@@ -32,35 +36,28 @@ class MusicBrainzTestSystem
     };
 
     //TODO: Name should be suffixed with Async
-    public Task<ArtistResponse> GetArtist(string artistSearch = DefaultSearchArtist)
+    public static async Task<ApiCallResult<ArtistResponse>> GetArtist(string artistSearch = DefaultSearchArtist)
     {
-        var client = new MusicBrainzClient(Settings, FakeHttp.ToHttpClient());
-        return client.QueryArtistAsync(artistSearch);
+        var fakeHttp = new FakeHttpMessageHandler();
+        var client = new MusicBrainzClient(Settings, fakeHttp.ToHttpClient());
+        return new ApiCallResult<ArtistResponse>(
+            await client.QueryArtistAsync(artistSearch),
+            fakeHttp.GetRequests()
+        );
     }
 
-    public Task<SongsResponse> GetSongsAsync()
+    public static async Task<ApiCallResult<SongsResponse>> GetSongsAsync()
     {
-        var client = new MusicBrainzClient(Settings, FakeHttp.ToHttpClient());
-        return client.QuerySongsAsync("11111111-1111-1111-1111-111111111111");
+        var fakeHttp = new FakeHttpMessageHandler();
+        var client = new MusicBrainzClient(Settings, fakeHttp.ToHttpClient());
+        return new ApiCallResult<SongsResponse>(
+            await client.QuerySongsAsync("11111111-1111-1111-1111-111111111111"),
+            fakeHttp.GetRequests()
+        );
     }
-
-    public Uri GetLastRequestUri()
-    {
-        var messages = FakeHttp.ReceivedMessages.ToArray();
-        messages.ShouldNotBeEmpty();
-        return messages.Last().RequestUri!;
-    }
-
-    public HttpHeadersNonValidated LastRequestHeaders()
-    {
-        var messages = FakeHttp.ReceivedMessages.ToArray();
-        messages.ShouldNotBeEmpty();
-        return messages.Last().Headers.NonValidated;
-    }
-
     class FakeHttpMessageHandler : HttpMessageHandler
     {
-        public ConcurrentQueue<HttpRequestMessage> ReceivedMessages { get; } = new();
+        ConcurrentQueue<HttpRequestMessage> ReceivedMessages { get; } = new();
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
@@ -75,7 +72,8 @@ class MusicBrainzTestSystem
                     Content = new StringContent(ArtistJsonResponse, Encoding.UTF8, "application/json")
                 });
             }
-            if (uri.AbsolutePath.EndsWith("work")) {
+            if (uri.AbsolutePath.EndsWith("work"))
+            {
                 return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new StringContent(SongsJsonResponse, Encoding.UTF8, "application/json")
@@ -88,6 +86,13 @@ class MusicBrainzTestSystem
         public HttpClient ToHttpClient()
         {
             return new HttpClient(this);
+        }
+
+        public IReadOnlyCollection<HttpRequest> GetRequests()
+        {
+            return ReceivedMessages
+                .Select(msg => new HttpRequest(msg.Headers.NonValidated, msg.RequestUri!))
+                .ToArray();
         }
     }
 }

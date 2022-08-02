@@ -7,30 +7,28 @@ class QueryingForSongs
     [Test]
     public async Task ShouldReturnTheSongsResponse()
     {
-        var sut = new MusicBrainzTestSystem();
-        var result = await sut.GetSongsAsync();
+        var result = await MusicBrainzTestSystem.GetSongsAsync();
 
-        result.ShouldNotBeNull();
-        result.Works.Count.ShouldBe(MusicBrainzTestSystem.SongCount);
-        result.Works.ElementAt(1).Title.ShouldBe(MusicBrainzTestSystem.SecondSong);
+        result.Value.ShouldNotBeNull();
+        result.Value.Works.Count.ShouldBe(MusicBrainzTestSystem.SongCount);
+        result.Value.Works.ElementAt(1).Title.ShouldBe(MusicBrainzTestSystem.SecondSong);
     }
 
     [Test]
     public async Task ShouldSendTheExpectedQuery()
     {
-        var sut = new MusicBrainzTestSystem();
-        _ = await sut.GetSongsAsync();
-        var uri = sut.GetLastRequestUri();
+        var result = await MusicBrainzTestSystem.GetSongsAsync();
+
+        var uri = result.LastRequest.Uri;
         uri.Query.ShouldContain($"query=type:song%20AND%20arid:{ MusicBrainzTestSystem.DefaultArtistID }&limit=10");
     }
 
     [Test]
     public async Task ShouldSendExpectedRequestHeaders()
     {
-        var sut = new MusicBrainzTestSystem();
-        _ = await sut.GetSongsAsync();
-        var headers = sut.LastRequestHeaders();
+        var result = await MusicBrainzTestSystem.GetSongsAsync();
 
+        var headers = result.LastRequest.HttpHeaders;
         headers["Accept"].ShouldHaveSingleItem().ShouldBe("application/json");
 
         //User-Agent gets split like this by HTTP client

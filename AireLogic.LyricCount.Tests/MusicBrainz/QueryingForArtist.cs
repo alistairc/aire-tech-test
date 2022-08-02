@@ -5,20 +5,18 @@ class QueryingForArtist
     [Test]
     public async Task ShouldReturnTheArtistResponse()
     {
-        var sut = new MusicBrainzTestSystem();
-        var result = await sut.GetArtist();
+        var result = await MusicBrainzTestSystem.GetArtist();
 
-        result.ShouldNotBeNull();
-        result.Artists.Count.ShouldBe(MusicBrainzTestSystem.ArtistsCount);
-        result.Artists.ElementAt(1).Name.ShouldBe(MusicBrainzTestSystem.SecondArtist);
+        result.Value.ShouldNotBeNull();
+        result.Value.Artists.Count.ShouldBe(MusicBrainzTestSystem.ArtistsCount);
+        result.Value.Artists.ElementAt(1).Name.ShouldBe(MusicBrainzTestSystem.SecondArtist);
     }
 
     [Test]
     public async Task ShouldSendExpectedRequestHeaders()
     {
-        var sut = new MusicBrainzTestSystem();
-        _ = await sut.GetArtist();
-        var headers = sut.LastRequestHeaders();
+        var result = await MusicBrainzTestSystem.GetArtist();
+        var headers = result.LastRequest.HttpHeaders;
 
         headers["Accept"].ShouldHaveSingleItem().ShouldBe("application/json");
 
@@ -29,21 +27,20 @@ class QueryingForArtist
     [Test]
     public async Task ShouldUrlEscapeTheArtistName()
     {
-        var sut = new MusicBrainzTestSystem();
-        _ = await sut.GetArtist("Artist With Spaces");
-        var uri = sut.GetLastRequestUri();
+        var result = await MusicBrainzTestSystem.GetArtist("Artist With Spaces");
+
+        var uri = result.LastRequest.Uri;
         uri.Query.ShouldContain("query=Artist+With+Spaces");
     }
 
     [Test]
     public async Task ShouldEscapeLuceneSpecialCharBeforeUrlEscapingArtist()
     {
-        var sut = new MusicBrainzTestSystem();
-        _ = await sut.GetArtist("AC/DC");
-        var uri = sut.GetLastRequestUri();
+        var result = await MusicBrainzTestSystem.GetArtist("AC/DC");
+
+        var uri = result.LastRequest.Uri;
         uri.Query.ShouldContain("query=AC%5C%2FDC");
         //                                  ^ %2F = /, URL encoded
         //                               ^ %5C = \, to escape the forward slash (for lucene)
     }
 }
-
