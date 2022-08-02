@@ -52,10 +52,10 @@ class FindingArtist
         static readonly SongsResponse Artist1SongsResponse = new()
         {
             Works = new[] {
-                new Work { Title = "Song 1"},
-                new Work { Title = "Song 2"},
-                new Work { Title = "Song 3"}
-            }
+                new Work("Song 1"),
+                new Work("Song 2"),
+                new Work("Song 3")
+           }
         };
 
         static readonly ArtistResponse NotFoundResponse = new();
