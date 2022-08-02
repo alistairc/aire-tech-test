@@ -18,7 +18,7 @@ class LyricCountProgram
     {
         if (args.Length != 1)
         {
-            StdOut.WriteLine(InvalidUsage);
+            await StdOut.WriteLineAsync(InvalidUsage);
             return ExitCode.InvalidArgs;
         }
 
@@ -27,11 +27,17 @@ class LyricCountProgram
 
         if (!result.ArtistFound)
         {
-            StdOut.WriteLine(UnknownArtist);
+            await StdOut.WriteLineAsync(UnknownArtist);
             return ExitCode.NoData;
         }
 
-        StdOut.WriteLine($"Artist: {result.ArtistName}");
+        await StdOut.WriteLineAsync($"Artist: {result.ArtistName}");
+
+        foreach (var song in result.Songs)
+        {
+            await StdOut.WriteLineAsync($"Song: {song.Name}");
+        }
+        
         return ExitCode.Success;
     }
 }
